@@ -1,5 +1,3 @@
-import mongoose from "mongoose";
-
 export type Order = {
   email: string;
   productId: string;
