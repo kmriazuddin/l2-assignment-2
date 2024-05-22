@@ -1,16 +1,38 @@
 import { z } from "zod";
 
+export type Variant = {
+  type: string;
+  value: string;
+};
+
+export type Inventory = {
+  quantity: number;
+  inStock: boolean;
+};
+
+export type Product = {
+  name: any;
+  description: string;
+  price: number;
+  category: string;
+  tags: string[];
+  variants: Variant[];
+  inventory: Inventory;
+};
+
+// Define the Variant schema
 const variantSchema = z.object({
-  type: z.string().nonempty("Type is required"),
-  value: z.string().nonempty("Value is required"),
+  type: z.string(),
+  value: z.string(),
 });
 
-const productSchema = z.object({
-  name: z.string().nonempty("Name is required"),
-  description: z.string().nonempty("Description is required"),
-  price: z.number().positive("Price must be a positive number"),
-  tags: z.array(z.string().nonempty()).nonempty("Tags are required"),
-  variants: z.array(variantSchema).optional(),
+// Define the Product schema
+export const productSchemaValidation: any = z.object({
+  name: z.string(),
+  description: z.string(),
+  price: z.number(),
+  variants: z.array(variantSchema),
 });
 
-export { productSchema, variantSchema };
+// Export the schemas
+export default { productSchemaValidation, variantSchema };
