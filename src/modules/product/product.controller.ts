@@ -1,8 +1,17 @@
 import { Request, Response } from "express";
 import { ProductServices } from "./product.services";
+import { z } from "zod";
 
 const createProduct = async (req: Request, res: Response) => {
   try {
+    const productValidation = z.object({
+      id: z.string(),
+      name: z.string(),
+      description: z.string(),
+      price: z.string(),
+      tags: z.number(),
+      variants: z.string(),
+    });
     const product = req.body;
     const result = await ProductServices.createProductDB(product);
     res.status(200).json({

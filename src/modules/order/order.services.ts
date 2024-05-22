@@ -6,12 +6,24 @@ const createOrderDB = async (order: Order) => {
   return result;
 };
 
-const getOrderDB = async () => {
+const getOrderDB = async (res: any) => {
   const result = await OrderModel.find();
+  if (result == null) {
+    res.status(500).json({
+      success: false,
+      message: "Could not found Order!",
+    });
+  }
+  return result;
+};
+
+const getOrderByEmail = async (email: string) => {
+  const result = await OrderModel.find({ email });
   return result;
 };
 
 export const OrderServices = {
   createOrderDB,
   getOrderDB,
+  getOrderByEmail,
 };
