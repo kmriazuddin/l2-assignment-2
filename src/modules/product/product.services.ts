@@ -11,8 +11,14 @@ const getProductDB = async () => {
   return result;
 };
 
-const getSingleProductDB = async (_id: string) => {
+const getSingleProductDB = async (_id: string, res: any) => {
   const result = await ProductModel.findOne({ _id });
+  if (result == null) {
+    res.status(500).json({
+      success: false,
+      message: "Could not Single Product are fetch successfully!",
+    });
+  }
   return result;
 };
 

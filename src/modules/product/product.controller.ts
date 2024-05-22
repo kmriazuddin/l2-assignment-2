@@ -39,7 +39,7 @@ const getAllProduct = async (req: Request, res: Response) => {
 const getSingleProduct = async (req: Request, res: Response) => {
   try {
     const productId = req.params.productId;
-    const result = await ProductServices.getSingleProductDB(productId);
+    const result = await ProductServices.getSingleProductDB(productId, res);
     res.status(200).json({
       success: true,
       message: "Single Product are fetch successfully!",

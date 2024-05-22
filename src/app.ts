@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
 
-app.use("/api/product", ProductRoutes);
-app.use("/api/order", OrderRoutes);
+app.use("/api/products", ProductRoutes);
+app.use("/api/orders", OrderRoutes);
 
 export default app;

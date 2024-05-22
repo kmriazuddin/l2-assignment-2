@@ -1,11 +1,17 @@
 import { Order } from "./order.interface";
 import { OrderModel } from "./order.model";
 
-const createProductDB = async (order: Order) => {
+const createOrderDB = async (order: Order) => {
   const result = await OrderModel.create(order);
   return result;
 };
 
+const getOrderDB = async () => {
+  const result = await OrderModel.find();
+  return result;
+};
+
 export const OrderServices = {
-  createProductDB,
+  createOrderDB,
+  getOrderDB,
 };
