@@ -25,9 +25,15 @@ const updateProductDB = async (_id: string, reqBody: any) => {
   return result;
 };
 
+const deleteProductDB = async (_id: string) => {
+  const result = await ProductModel.deleteOne({ _id });
+  return result;
+};
+
 export const ProductServices = {
   createProductDB,
   getProductDB,
   getSingleProductDB,
   updateProductDB,
+  deleteProductDB,
 };
